@@ -2,7 +2,12 @@ import { Itarefa } from "../../types/tarefa";
 import style from "../Lista/Lista.module.scss";
 import Item from "./Item";
 
-function Lista({ tarefas }: { tarefas: Itarefa[]}) {
+interface Props {
+  tarefas: Itarefa[],
+  selecionaTarefa: (tarefaSelecionada: Itarefa) => void
+}
+
+function Lista({ tarefas, selecionaTarefa }: Props) {
   //forma nova de utilizar o Components
   //criando um array de tarefas
 
@@ -11,12 +16,13 @@ function Lista({ tarefas }: { tarefas: Itarefa[]}) {
       <h2>Estudos do dia</h2>
       <ul>
         {/* o metodo .map renderiza de forma dinamica */}
-        {tarefas.map((item, index) => (
+        {tarefas.map((item => (
           <Item 
-          key={index}
+          selecionaTarefa={selecionaTarefa}
+          key={item.id}
           {...item}
           />
-        ))}
+        )))} 
       </ul>
     </aside>
   );
