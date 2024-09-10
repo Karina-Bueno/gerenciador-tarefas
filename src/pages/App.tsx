@@ -7,6 +7,7 @@ import { Itarefa } from "../types/tarefa";
 
 function App() { //para renderizar um component no react utilizamos a tag html </>
   const [tarefas, setTarefas] = useState<Itarefa[]>([]);
+
   const [selecionado, setSelecionado] = useState<Itarefa>();
 
   function selecionaTarefa(tarefaSelecionada: Itarefa) {
@@ -23,7 +24,7 @@ function App() { //para renderizar um component no react utilizamos a tag html <
         tarefas={tarefas} 
         selecionaTarefa={selecionaTarefa}
       />
-      <Cronometro /> 
+      <Cronometro selecionado={selecionado} /> 
     </div>
   );
 }

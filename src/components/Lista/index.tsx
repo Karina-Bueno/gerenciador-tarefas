@@ -20,7 +20,7 @@ function Lista({ tarefas, selecionaTarefa }: Props) {
           <Item 
           selecionaTarefa={selecionaTarefa}
           key={item.id}
-          {...item}
+          {...item} //Spread Operator é utilizado para atualizações, ele irá pegar o novo objeto que está sendo criado que terá tudo que o item tinha + o foi adicionado
           />
         )))} 
       </ul>
