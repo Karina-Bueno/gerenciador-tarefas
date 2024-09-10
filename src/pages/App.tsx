@@ -17,6 +17,23 @@ function App() { //para renderizar um component no react utilizamos a tag html <
       selecionado: tarefa.id === tarefaSelecionada.id ? true: false //verificando se a tarefa que estamos iterando no momento, tarefa.id, é igual a tarefaSelecionada.id. Em caso positivo, retornaremos true, valor colocado após o ponto de interrogação; do contrário, retornaremos false, valor colocado após os dois pontos.
     })));
   }
+
+  function finalizarTarefa() {
+    if (selecionado) {
+      setSelecionado(undefined);
+      setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => {
+        if (tarefa.id === selecionado.id) {
+          return {
+            ...tarefa,
+            selecionado: false,
+            completado: true
+          }
+        }
+        return tarefa;
+      }))
+    }
+  }
+
   return ( //aqui returno todos os components passando o nome do component dentro de tags
     <div className={style.AppStyle}> 
       <Formulario setTarefas={setTarefas} /> 
@@ -24,7 +41,9 @@ function App() { //para renderizar um component no react utilizamos a tag html <
         tarefas={tarefas} 
         selecionaTarefa={selecionaTarefa}
       />
-      <Cronometro selecionado={selecionado} /> 
+      <Cronometro 
+      selecionado={selecionado}
+      finalizarTarefa={finalizarTarefa} /> 
     </div>
   );
 }
